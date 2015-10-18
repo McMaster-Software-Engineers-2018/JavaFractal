@@ -1,4 +1,6 @@
 # JavaFractal
+Sample: http://gfycat.com/UnpleasantAffectionateAvocet
+
 Use with ImageMagick to live life in the world of cool gifs (http://www.imagemagick.org/script/index.php)
 
 I don't know how to make fancy README files
