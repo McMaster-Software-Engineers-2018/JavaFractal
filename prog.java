@@ -26,7 +26,7 @@ public class prog{
                     B = new Complex(0,0);
 
                     while (B.GetMagnitude() < (2-(double)p/100) && iterations < maxIter){
-                        B = B.Multiply(B).Add(A);
+                        B = B.Multiply(B).Add(A);//Shit is also funky here. Play around with this.
                         iterations++;
                     }
 
