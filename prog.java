@@ -1,11 +1,13 @@
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO.*;
+import javax.imageio.stream.ImageOutputStream;
+import javax.imageio.stream.FileImageOutputStream;
 import java.io.*;
 
 public class prog{
     public static void main(String[] args) {
 
         int side = 1000;
+        BufferedImage[] imageArray = new BufferedImage[100];
 
         for (int p = 0; p < 100; p++){
 
@@ -40,14 +42,27 @@ public class prog{
                 }
             }
 
+            imageArray[p] = image;
+        }
+        System.out.println("Done!");
 
-            //Output the image
-            File outputfile = new File("saved" + p + ".png");
-            try {javax.imageio.ImageIO.write(image, "png", outputfile);}
-            catch (IOException e){System.err.println("Caught IOException: " +  e.getMessage());}
-            finally{}
+        File file = new File("result.gif");
+        try{
+            file.createNewFile();
 
-            System.out.println("Done: " + p);
+            ImageOutputStream outputFile = new FileImageOutputStream(file);
+            int delay = 1; //Delay in second between frames
+            boolean noLoop = false; //Whether loop stops or not
+            GifSequenceWriter writer = new GifSequenceWriter(outputFile, imageArray[0].getType(), delay, noLoop);
+
+            //Write the file
+            for (int i=0;i<100;i++){
+                writer.writeToSequence(imageArray[i]);
+            }
+            writer.close();
+            outputFile.close();
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
@@ -91,4 +106,6 @@ class Complex {
         return new Complex(_r, _i);
     }
 }
+
+
 
