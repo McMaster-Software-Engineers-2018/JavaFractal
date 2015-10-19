@@ -1,7 +1,7 @@
 # JavaFractal
-Sample: http://gfycat.com/UnpleasantAffectionateAvocet
+<a href = "http://gfycat.com/UnpleasantAffectionateAvocet"> Sample</a>
 
-Use with ImageMagick to live life in the world of cool gifs (http://www.imagemagick.org/script/index.php)
+Use with <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> to live life in the world of cool gifs 
 
 I don't know how to make fancy README files
 
