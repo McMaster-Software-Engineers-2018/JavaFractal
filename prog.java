@@ -7,9 +7,12 @@ public class prog{
     public static void main(String[] args) {
 
         int side = 1000;
+        int half_frames = 50; //Half the number of frames in the final gif
+        //The gif will play forwards first, then backwards
+
         BufferedImage[] imageArray = new BufferedImage[100];
 
-        for (int p = 0; p < 100; p++){
+        for (int p = 0; p < half_frames; p++){
 
             //Set up the image
             BufferedImage image = new BufferedImage(side, side, BufferedImage.TYPE_INT_ARGB);
@@ -37,7 +40,7 @@ public class prog{
 
                     //This is where shit gets funky
                     //Play around with this col variable to change your fractals up
-                    int col = RGBI((int)(B.GetMagnitude()*(100-p)), 0, (int)(A.GetMagnitude()*(100-p)));
+                    int col = RGBI((int)(B.GetMagnitude()*100), 0, (int)(A.GetMagnitude()*100));
                     image.setRGB((side/2)+(int)_x, (side/2)+(int)_y, col);
                 }
             }
@@ -56,13 +59,16 @@ public class prog{
             GifSequenceWriter writer = new GifSequenceWriter(outputFile, imageArray[0].getType(), delay, noLoop);
 
             //Write the file
-            for (int i=0;i<100;i++){
+            for (int i=0;i<half_frames;i++){
+                writer.writeToSequence(imageArray[i]);
+            }
+            for (int i=half_frames-1;i>-1;i--){
                 writer.writeToSequence(imageArray[i]);
             }
             writer.close();
             outputFile.close();
         }catch (IOException e){
-            e.printStackTrace();
+            System.out.println("An IO error occured.");
         }
     }
 
